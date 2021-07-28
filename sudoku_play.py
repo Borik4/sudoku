@@ -1,14 +1,15 @@
 from tabulate import tabulate
+from copy import deepcopy
 
-sudoku_1 = [[], [], [], [], [], [], [], [], [],
-            9, [], 2, [], [], 3, [], 8, [],
-            4, 7, 1, [], 2, [], [], 3, [],
-            [], 6, [], [], 3, 7, [], [], 8,
-            [], [], [], [], 4, 8, [], 5, [],
-            [], 9, [], [], [], 6, 7, [], [],
-            [], [], [], [], [], 9, [], [], 7,
-            8, [], [], 6, [], [], 3, [], 4,
-            [], [], [], [], 5, 4, [], [], []]
+sudoku_1 = [[], [], 9, [], [], 7, [], 4, [],
+                    [], 7, 1, [], 2, [], [], [], 5,
+                    [], 4, [], [], [], [], [], 3, 9,
+                    [], [], [], [], [], 8, [], [], [],
+                    [], [], [], 4, 6, [], [], [], [],
+                    [], [], 2, 1, 9, [], 8, [], [],
+                    [], 6, [], [], [], [], 4, [], [],
+                    [], 9, [], 2, 8, 6, 5, [], [],
+                    5, [], [], [], [], [], [], [], []]
 
 for i in sudoku_1:
     if type(i) is list:
@@ -17,7 +18,6 @@ for i in sudoku_1:
 sudoku = {}
 for i in range(1, 82):
     sudoku[i] = sudoku_1[i - 1]
-
 
 
 def horizon():
@@ -134,6 +134,56 @@ def kubik_stugum(l):
                         sudoku[g] = w
 
 
+
+
+def porc():
+    global sudoku
+    sudoku_copy = {}
+    for i in sudoku:
+        sudoku_copy[i] = deepcopy(sudoku[i])
+    d = list(sudoku_copy.values())
+    d_1 = [[], [], [], [], [], [], [], [], []]
+    l = -1
+    for i in range(len(d)):
+        if i % 9 == 0:
+            l += 1
+        d_1[l].append(d[i])
+    k = False
+    for i in range(len(d_1)):
+        for t in range(len(d_1[i])):
+            if type(d_1[i][t]) is list:
+                sudoku[i*9+t+1] = sudoku_copy[i*9+t+1]
+                del sudoku_copy[i*9+t+1][0]
+                k = True
+                break
+        if k is True:
+            break
+
+    for i in range(10):
+        kubik()
+        horizon()
+        uxxadzig()
+        nshum()
+    for i in range(10):
+        kubik()
+        horizon()
+        uxxadzig()
+        nshum()
+    for i in range(10):
+        kubik()
+        horizon()
+        uxxadzig()
+        nshum()
+        d = list(sudoku.values())
+        d_2 = list(sudoku_copy.values())
+    if [] in d:
+        sudoku = sudoku_copy
+
+for i in range(10):
+    kubik()
+    horizon()
+    uxxadzig()
+    nshum()
 for i in range(10):
     kubik()
     horizon()
@@ -141,7 +191,20 @@ for i in range(10):
     nshum()
 
 d = list(sudoku.values())
-d_1 = [[], [], [], [], [], [], [], [], [], ]
+d_1 = [[], [], [], [], [], [], [], [], []]
+l = -1
+for i in range(len(d)):
+    if i % 9 == 0:
+        l += 1
+    d_1[l].append(d[i])
+porc()
+for i in range(10):
+    kubik()
+    horizon()
+    uxxadzig()
+    nshum()
+d = list(sudoku.values())
+d_1 = [[], [], [], [], [], [], [], [], []]
 l = -1
 for i in range(len(d)):
     if i % 9 == 0:
