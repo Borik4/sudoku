@@ -159,36 +159,32 @@ def porc():
         if k is True:
             break
 
-    for i in range(10):
-        kubik()
-        horizon()
-        uxxadzig()
-        nshum()
-    for i in range(10):
-        kubik()
-        horizon()
-        uxxadzig()
-        nshum()
-    for i in range(10):
-        kubik()
-        horizon()
-        uxxadzig()
-        nshum()
+        while True:
+            a = {}
+            for i in sudoku:
+                a[i] = deepcopy(sudoku[i])
+            kubik()
+            horizon()
+            uxxadzig()
+            nshum()
+            if a == sudoku:
+                break
+
         d = list(sudoku.values())
         d_2 = list(sudoku_copy.values())
     if [] in d:
         sudoku = sudoku_copy
 
-for i in range(10):
+while True:
+    a = {}
+    for i in sudoku:
+        a[i] = deepcopy(sudoku[i])
     kubik()
     horizon()
     uxxadzig()
     nshum()
-for i in range(10):
-    kubik()
-    horizon()
-    uxxadzig()
-    nshum()
+    if a == sudoku:
+        break
 
 d = list(sudoku.values())
 d_1 = [[], [], [], [], [], [], [], [], []]
@@ -197,12 +193,20 @@ for i in range(len(d)):
     if i % 9 == 0:
         l += 1
     d_1[l].append(d[i])
+
 porc()
-for i in range(10):
+
+while True:
+    a = {}
+    for i in sudoku:
+        a[i] = deepcopy(sudoku[i])
     kubik()
     horizon()
     uxxadzig()
     nshum()
+    if a == sudoku:
+        break
+
 d = list(sudoku.values())
 d_1 = [[], [], [], [], [], [], [], [], []]
 l = -1
